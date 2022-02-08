@@ -1,7 +1,8 @@
 package boj.zlica.busline.services;
 
 
-import boj.zlica.Avio.kompanija.exceptions.UserAuthException;
+
+import boj.zlica.busline.exceptions.UserAuthException;
 import org.springframework.http.HttpStatus;
 
 

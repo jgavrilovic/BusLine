@@ -1,7 +1,7 @@
 package boj.zlica.busline.repositories;
 
 
-import boj.zlica.Avio.kompanija.entities.UserEntity;
+import boj.zlica.busline.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 */
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long>{
-    UserEntity findByEmailAndPassword(String email,String password);
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+    UserEntity findByEmailAndPassword(String email, String password);
     UserEntity findByEmail(String email);
 }

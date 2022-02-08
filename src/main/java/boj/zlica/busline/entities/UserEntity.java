@@ -5,12 +5,13 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+
 @Data
 @Entity
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long idUser;
 
     @Column(name = "uid", nullable = false, unique = true)
@@ -31,7 +32,7 @@ public class UserEntity {
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private boj.zlica.Avio.kompanija.entities.UserRole role;
+    private UserRole role;
 
     public UserEntity(){}
 
