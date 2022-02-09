@@ -26,7 +26,7 @@ public class LineServiceImpl implements LineService{
 
     @Override
     public LineEntity showById(Long id) {
-
+        //TODO: ne moze se null vratiti, mora informacija o gresci
         if(lineRepository.findById(id).isPresent())
             return lineRepository.findById(id).get();
         return null;
@@ -34,6 +34,7 @@ public class LineServiceImpl implements LineService{
 
     @Override
     public void createLine(String startLocation, String endLocation, Integer ticketPrice, String transportType) {
+        //kreira se entitet i cuva se u bazi
         LineEntity lineEntity = new LineEntity();
         lineEntity.setStartLocation(startLocation);
         lineEntity.setEndLocation(endLocation);
@@ -44,6 +45,7 @@ public class LineServiceImpl implements LineService{
 
     @Override
     public void editLine(Long id, String startLocation, String endLocation, Integer ticketPrice, String transportType) {
+        //TODO: sigurno moze optimizacije provere koji se podatak menja a koji ne.
         LineEntity lineEntity = showById(id);
 
         if(lineEntity.getStartLocation().equals(startLocation)){
@@ -58,7 +60,7 @@ public class LineServiceImpl implements LineService{
             lineEntity.setEndLocation(endLocation);
         }
 
-        if(lineEntity.getTicketPrice() == ticketPrice){
+        if(lineEntity.getTicketPrice().equals(ticketPrice)){
             System.out.println("Nije potrebna izmena cene");
         }else{
             lineEntity.setTicketPrice(ticketPrice);

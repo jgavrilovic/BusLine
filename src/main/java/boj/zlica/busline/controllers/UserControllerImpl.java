@@ -1,13 +1,17 @@
 package boj.zlica.busline.controllers;
 
 
+import boj.zlica.busline.entities.UserEntity;
 import boj.zlica.busline.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 
@@ -20,16 +24,12 @@ public class UserControllerImpl implements UserController{
 
 
     @Override
-    public ResponseEntity<String> registerUser(Map<String, Object> userMap) {
-        String firstName = (String) userMap.get("first_name");
-        String lastName = (String) userMap.get("last_name");
-        String email = (String) userMap.get("email");
-        String password = (String) userMap.get("password");
-
-        if(userService.registerValidation(firstName,lastName,email,password).equals(HttpStatus.OK))
-            userService.createUser(firstName,lastName,email,password);
-        else
-            return new ResponseEntity<>("Korisnik nije kreiran, doslo je do greske!",HttpStatus.BAD_REQUEST);
+    public ResponseEntity<String> registerUser(UserEntity userEntity) {
+        String firstName = userEntity.getFirstName();
+        String lastName =  userEntity.getLastName();
+        String email =  userEntity.getEmail();
+        String password =  userEntity.getPassword();
+        userService.createUser(firstName,lastName,email,password);
         return new ResponseEntity<>("Korisnik uspesno registrovan",HttpStatus.CREATED);
     }
 

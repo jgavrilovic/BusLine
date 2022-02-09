@@ -22,19 +22,22 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository userRepository;
 
+    /**Metoda se ne koristi jer, postoji validacije iz javax.validation() */
     @Override
     /*validacija usera*/
     public HttpStatus registerValidation(String firstName, String lastName, String email, String password) throws UserAuthException {
-        /*Validacije imena*/
+        /*
+
+        //Validacije imena
         Pattern patternName = Pattern.compile("^([A-Z])([a-z]+)$");
         if(!patternName.matcher(firstName).matches()) throw new UserAuthException("Los format imena");
 
 
-        /*Validacije prezimena*/
+        //Validacije prezimena
         Pattern patternLast = Pattern.compile("^([A-Z])([a-z]+)$");
         if(!patternLast.matcher(lastName).matches()) throw new UserAuthException("Los format prezimena");
 
-        /*Validacije emaila*/
+        //Validacije emaila
         Pattern patternEmail = Pattern.compile("^(.+)@([a-z]+).(.+)$");
         if(email==null) throw new UserAuthException("Email je obavezno polje");
         email=email.toLowerCase();
@@ -44,11 +47,11 @@ public class UserServiceImpl implements UserService{
         if(userRepository.findByEmail(email)!=null) throw new UserAuthException("Email adresa vec postoji");
 
 
-        /*Validacije passworda*/
+        //Validacije passworda
         Pattern patternPassword = Pattern.compile("^(?=.*[A-Z][a-z])(?=.*\\d)[A-Za-z\\d]{8,}$");
         if(!patternPassword.matcher(password).matches()) throw new UserAuthException("Los format passworda ");
 
-
+        */
         return HttpStatus.OK;
     }
 

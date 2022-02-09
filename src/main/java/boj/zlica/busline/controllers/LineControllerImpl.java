@@ -26,11 +26,17 @@ public class LineControllerImpl implements LineController{
         return lineService.showLines();
     }
 
+    /**TODO
+     *  nema provere ako id nepostoji, potrebna implementacija rola
+     *  */
     @Override
     public ResponseEntity<?> searchById(Long id) {
         return new ResponseEntity<>(lineService.showById(id), HttpStatus.OK);
     }
 
+    /**TODO
+     *  potrebna implementacija rola, mozda i validacija argumenata
+     *  */
     @Override
     public ResponseEntity<String> createLine(Map<String, Object> lineMap) {
         String startLocation = (String) lineMap.get("start_location");
@@ -42,8 +48,14 @@ public class LineControllerImpl implements LineController{
         return new ResponseEntity<>("Linija je uspesno kreirana",HttpStatus.CREATED);
     }
 
+    /**TODO
+     *  potrebna implementacija rola, mozda i validacija argumenata
+     *  moguce je uraditi optimizaciju editLine
+     *  status mozda nije odgovarajuci
+     *  */
     @Override
     public ResponseEntity<?> editLine(Long id, Map<String,Object> lineMap) {
+
         String startLocation = (String) lineMap.get("start_location");
         String endLocation = (String) lineMap.get("end_location");
         Integer ticketPrice = (Integer) lineMap.get("ticket_price");

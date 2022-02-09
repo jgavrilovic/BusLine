@@ -1,10 +1,12 @@
 package boj.zlica.busline.entities;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
-
+//TODO: izmeni naziv tabele
 @Data
 @Entity
 public class LineEntity {
@@ -26,7 +28,7 @@ public class LineEntity {
     @Enumerated(EnumType.STRING)
     private TransportType transportType;
 
-    //vreme kretanja,dolaska, tip karte
+    //TODO: vreme kretanja,dolaska, tip karte(povratna,jednosmerna), datum vazenja karte itd..
 
     public LineEntity(){}
 
