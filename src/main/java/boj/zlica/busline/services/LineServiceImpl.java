@@ -1,14 +1,13 @@
 package boj.zlica.busline.services;
 
-import boj.zlica.busline.entities.LineEntity;
-import boj.zlica.busline.entities.TransportType;
+import boj.zlica.busline.dto.LineEntity;
+import boj.zlica.busline.dto.TransportType;
 import boj.zlica.busline.repositories.LineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional

@@ -1,6 +1,7 @@
-package boj.zlica.busline.entities;
+package boj.zlica.busline.dto;
 
 
+import boj.zlica.busline.util.Age;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,6 +29,10 @@ public class UserEntity {
     @Pattern(regexp = "^([A-Z])([a-z]+)$", message = "Format prezimena je pogresan")
     @Column(name = "last_name")
     private String lastName;
+
+    @Age(lower = 15, upper = 60, message = "trebale bi biti izmedju 15 i 60")
+    @Column(name = "age")
+    private int age;
 
     @Email(message = "Format emaila je pogresan")
     @Column(name = "email")

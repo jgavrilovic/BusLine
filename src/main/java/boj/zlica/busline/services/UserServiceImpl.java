@@ -1,8 +1,8 @@
 package boj.zlica.busline.services;
 
 
-import boj.zlica.busline.entities.UserEntity;
-import boj.zlica.busline.entities.UserRole;
+import boj.zlica.busline.dto.UserEntity;
+import boj.zlica.busline.dto.UserRole;
 import boj.zlica.busline.exceptions.UserAuthException;
 import boj.zlica.busline.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
-import java.util.regex.Pattern;
 
 @Service
 @Transactional

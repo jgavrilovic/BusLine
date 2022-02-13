@@ -1,6 +1,6 @@
 package boj.zlica.busline.repositories;
 
-import boj.zlica.busline.entities.LineEntity;
+import boj.zlica.busline.dto.LineEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

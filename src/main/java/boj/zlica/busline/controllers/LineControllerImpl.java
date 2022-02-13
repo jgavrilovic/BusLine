@@ -1,7 +1,6 @@
 package boj.zlica.busline.controllers;
 
-import boj.zlica.busline.entities.LineEntity;
-import boj.zlica.busline.entities.TransportType;
+import boj.zlica.busline.dto.LineEntity;
 import boj.zlica.busline.services.LineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,10 +1,8 @@
-package boj.zlica.busline.entities;
+package boj.zlica.busline.dto;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 
 //TODO: izmeni naziv tabele
 @Data

@@ -1,4 +1,4 @@
-package boj.zlica.busline.entities;
+package boj.zlica.busline.dto;
 
 public enum TransportType {
     BUS,VAN

@@ -1,6 +1,6 @@
 package boj.zlica.busline.controllers;
 
-import boj.zlica.busline.entities.LineEntity;
+import boj.zlica.busline.dto.LineEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

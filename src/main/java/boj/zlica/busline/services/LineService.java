@@ -1,9 +1,8 @@
 package boj.zlica.busline.services;
 
-import boj.zlica.busline.entities.LineEntity;
+import boj.zlica.busline.dto.LineEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface LineService {
 

@@ -1,6 +1,6 @@
 package boj.zlica.busline.controllers;
 
-import boj.zlica.busline.entities.UserEntity;
+import boj.zlica.busline.dto.UserEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
