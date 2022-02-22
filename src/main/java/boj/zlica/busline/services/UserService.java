@@ -3,6 +3,8 @@ package boj.zlica.busline.services;
 
 
 import boj.zlica.busline.exceptions.UserAuthException;
+import boj.zlica.busline.securities.JWT.TokenRequest;
+import boj.zlica.busline.securities.JWT.TokenResponse;
 import org.springframework.http.HttpStatus;
 
 
@@ -28,16 +30,16 @@ public interface UserService {
       *  @param password lozinka korisnika
       *  @throws UserAuthException nasledjuje RuntimeException
       * */
-     void createUser(String firstName,String lastName,String email,String password) throws UserAuthException;
+     void createUser(String firstName,String lastName,Integer age, String email,String password) throws UserAuthException;
 
 
      /**
       * Metoda proverava prosledjene atribute od korisnika sa podacima iz baze
-      *  @param email email adresa korisnika
-      *  @param password lozinka korisnika
+      *  @param TokenRequest tokenRequest - email i password
+      *
       *
       *  @return  HttpStatus.ACCEPTED u suprotnom NOT_ACCEPTABLE
       * */
-     HttpStatus loginValidation(String email, String password);
+     TokenResponse loginValidation(TokenRequest tokenRequest);
 
 }

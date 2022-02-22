@@ -2,14 +2,14 @@ package boj.zlica.busline.controllers;
 
 
 import boj.zlica.busline.dto.UserEntity;
+import boj.zlica.busline.securities.PasswordSalt;
+import boj.zlica.busline.securities.JWT.TokenRequest;
 import boj.zlica.busline.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 
 @RestController
@@ -24,21 +24,16 @@ public class UserControllerImpl implements UserController{
     public ResponseEntity<String> registerUser(UserEntity userEntity) {
         String firstName = userEntity.getFirstName();
         String lastName =  userEntity.getLastName();
+        int age = userEntity.getAge();
         String email =  userEntity.getEmail();
         String password =  userEntity.getPassword();
-        userService.createUser(firstName,lastName,email,password);
+        userService.createUser(firstName,lastName,age,email, PasswordSalt.encryptBySalt(password));
         return new ResponseEntity<>("Korisnik uspesno registrovan",HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<String> loginUser(Map<String, Object> userMap) {
-        String email = (String) userMap.get("email");
-        String password = (String) userMap.get("password");
-
-        HttpStatus status = userService.loginValidation(email,password);
-        if(!status.equals(HttpStatus.ACCEPTED))
-            return new ResponseEntity<>("Korisnik nije registrovan", status);
-        return new ResponseEntity<>("Korisnik uspesno loginovan", status);
+    public ResponseEntity<?> loginUser(TokenRequest tokenRequest) {
+        return new ResponseEntity<>(userService.loginValidation(tokenRequest), HttpStatus.OK);
     }
 
 

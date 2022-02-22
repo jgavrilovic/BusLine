@@ -12,6 +12,7 @@ public interface LineController {
     /**Vraca sve podatke iz tabele "line_entity", putanja: api/lines/searchAll
      * @return List <LineEntity> lista entiteta LineEntity
      * */
+
     @GetMapping("/searchAll")
     List<LineEntity> searchAllLines();
 

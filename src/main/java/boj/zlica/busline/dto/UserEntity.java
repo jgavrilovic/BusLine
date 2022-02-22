@@ -3,6 +3,8 @@ package boj.zlica.busline.dto;
 
 import boj.zlica.busline.util.Age;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -34,12 +36,12 @@ public class UserEntity {
     @Column(name = "age")
     private int age;
 
-    @Email(message = "Format emaila je pogresan")
     @Column(name = "email")
+    @Email(message = "Format emaila je pogresan")
     private String email;
 
     @NotNull
-    @Pattern(regexp = "^(?=.*[A-Z][a-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Format passworda je pogresan")
+    //@Pattern(regexp = "^(?=.*[A-Z][a-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Format passworda je pogresan")
     @Column(name = "password")
     private String password;
 

@@ -5,7 +5,10 @@ import boj.zlica.busline.dto.UserEntity;
 import boj.zlica.busline.dto.UserRole;
 import boj.zlica.busline.exceptions.UserAuthException;
 import boj.zlica.busline.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import boj.zlica.busline.securities.PasswordSalt;
+import boj.zlica.busline.securities.JWT.TokenRequest;
+import boj.zlica.busline.securities.JWT.TokenResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,12 +17,13 @@ import java.util.UUID;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
 
 
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final TokenService tokenService;
 
     /**Metoda se ne koristi jer, postoji validacije iz javax.validation() */
     @Override
@@ -55,13 +59,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void createUser(String firstName,String lastName,String email,String password) throws UserAuthException {
+    public void createUser(String firstName,String lastName,Integer age, String email,String password) throws UserAuthException {
         /*Pravi se novi userEntity od prosledjenih podataka kako bi se sacuvao u bazi*/
         String uuid = UUID.randomUUID().toString();
         UserEntity entity = new UserEntity();
         entity.setUid(uuid);
         entity.setFirstName(firstName);
         entity.setLastName(lastName);
+        entity.setAge(age);
         entity.setEmail(email);
         entity.setPassword(password);
         entity.setRole(UserRole.GUEST);
@@ -70,10 +75,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public HttpStatus loginValidation(String email, String password)  {
+    public TokenResponse loginValidation(TokenRequest tokenRequest)  {
+        UserEntity userEntity = userRepository.findByEmail(tokenRequest.getEmail())
+                .filter(user -> PasswordSalt.decryptBySalt(tokenRequest.getPassword(),user.getPassword()))
+                .orElseThrow(() -> new UserAuthException("Invalid email or password"));
+        return tokenService.generateTokenFor(userEntity);
 
-        if(userRepository.findByEmailAndPassword(email,password)!=null)
-            return HttpStatus.ACCEPTED;
-        return HttpStatus.NOT_ACCEPTABLE;
     }
 }
